@@ -1,5 +1,6 @@
 import { Box, Stack, Tab, Typography } from "@mui/material";
 import {
+  backButtonStyles,
   projectViewHeaderDesc,
   projectViewHeaderTitle,
   tabPanelStyle,
@@ -19,6 +20,8 @@ import ProjectFrameworks from "../ProjectFrameworks";
 import CustomizableToast from "../../../vw-v2-components/Toast";
 import allowedRoles from "../../../../application/constants/permissions";
 import { VerifyWiseContext } from "../../../../application/contexts/VerifyWise.context";
+import { useNavigate } from "react-router";
+import CustomizableButton from "../../../vw-v2-components/Buttons";
 
 const VWProjectView = () => {
   const { userRoleName } = useContext(VerifyWiseContext);
@@ -35,6 +38,7 @@ const VWProjectView = () => {
     message: "",
     visible: false,
   });
+  const navigate = useNavigate();
 
   // Update tab value when URL parameter changes
   useEffect(() => {
@@ -67,6 +71,13 @@ const VWProjectView = () => {
   return (
     <Stack className="vw-project-view" overflow={"hidden"}>
       {toast.visible && <CustomizableToast title={toast.message} />}
+      <CustomizableButton
+        onClick={() => navigate("/")}
+        variant="outlined"
+        sx={backButtonStyles.root}
+        text="Back to Dashboard"
+      />
+
       <Stack className="vw-project-view-header" sx={{ mb: 10 }}>
         {project ? (
           <>
@@ -154,7 +165,11 @@ const VWProjectView = () => {
                 project={project}
                 triggerRefresh={handleRefresh}
                 initialFrameworkId={
-                  framework === "iso-42001" ? 2 : framework === "eu-ai-act" ? 1 : project.framework[0].framework_id
+                  framework === "iso-42001"
+                    ? 2
+                    : framework === "eu-ai-act"
+                      ? 1
+                      : project.framework[0].framework_id
                 }
               />
             ) : (

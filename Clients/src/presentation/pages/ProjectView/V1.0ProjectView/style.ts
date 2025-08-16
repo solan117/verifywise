@@ -34,3 +34,19 @@ export const projectRiskSection = {
   mt: 10,
   fontSize: 16,
 };
+
+export const backButtonStyles = {
+  root: {
+    backgroundColor: "#13715B",
+    color: "#fff",
+    border: "1px solid #13715B",
+    borderRadius: "4px",
+    fontSize: "13px",
+    margin: "5px",
+    fontWeight: 400,
+    minWidth: "auto",
+    maxWidth: "20%",
+    textTransform: "none",
+    "&:hover": {},
+  },
+};
